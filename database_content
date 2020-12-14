@@ -1,0 +1,319 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.5 (Ubuntu 12.5-0ubuntu0.20.04.1)
+-- Dumped by pg_dump version 12.5 (Ubuntu 12.5-0ubuntu0.20.04.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: account; Type: TABLE; Schema: public; Owner: flask_project
+--
+
+CREATE TABLE public.account (
+    id integer NOT NULL,
+    account_no integer NOT NULL,
+    account_type character varying(30) NOT NULL,
+    balance double precision NOT NULL,
+    date_started timestamp without time zone NOT NULL,
+    user_id integer NOT NULL
+);
+
+
+ALTER TABLE public.account OWNER TO flask_project;
+
+--
+-- Name: account_id_seq; Type: SEQUENCE; Schema: public; Owner: flask_project
+--
+
+CREATE SEQUENCE public.account_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.account_id_seq OWNER TO flask_project;
+
+--
+-- Name: account_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: flask_project
+--
+
+ALTER SEQUENCE public.account_id_seq OWNED BY public.account.id;
+
+
+--
+-- Name: alembic_version; Type: TABLE; Schema: public; Owner: flask_project
+--
+
+CREATE TABLE public.alembic_version (
+    version_num character varying(32) NOT NULL
+);
+
+
+ALTER TABLE public.alembic_version OWNER TO flask_project;
+
+--
+-- Name: log; Type: TABLE; Schema: public; Owner: flask_project
+--
+
+CREATE TABLE public.log (
+    id integer NOT NULL,
+    account_log_date timestamp without time zone NOT NULL,
+    account_log character varying(30) NOT NULL,
+    debit integer,
+    credit integer,
+    user_crn integer NOT NULL,
+    balance integer NOT NULL,
+    account_id integer NOT NULL
+);
+
+
+ALTER TABLE public.log OWNER TO flask_project;
+
+--
+-- Name: log_id_seq; Type: SEQUENCE; Schema: public; Owner: flask_project
+--
+
+CREATE SEQUENCE public.log_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.log_id_seq OWNER TO flask_project;
+
+--
+-- Name: log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: flask_project
+--
+
+ALTER SEQUENCE public.log_id_seq OWNED BY public.log.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: flask_project
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    crn integer NOT NULL,
+    first_name character varying(20) NOT NULL,
+    last_name character varying(20) NOT NULL,
+    email character varying(120) NOT NULL,
+    address text NOT NULL,
+    image_file character varying(50) NOT NULL,
+    pan_number character varying(10),
+    adhar_number character varying(12),
+    password character varying(60) NOT NULL,
+    is_admin boolean NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO flask_project;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: flask_project
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO flask_project;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: flask_project
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: account id; Type: DEFAULT; Schema: public; Owner: flask_project
+--
+
+ALTER TABLE ONLY public.account ALTER COLUMN id SET DEFAULT nextval('public.account_id_seq'::regclass);
+
+
+--
+-- Name: log id; Type: DEFAULT; Schema: public; Owner: flask_project
+--
+
+ALTER TABLE ONLY public.log ALTER COLUMN id SET DEFAULT nextval('public.log_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: flask_project
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Data for Name: account; Type: TABLE DATA; Schema: public; Owner: flask_project
+--
+
+COPY public.account (id, account_no, account_type, balance, date_started, user_id) FROM stdin;
+3	567228	salary	25000	2020-12-14 09:08:06.403855	37078
+1	365573	saving	9500	2020-12-14 09:07:59.007098	37078
+2	346892	current	2530	2020-12-14 09:08:02.654527	37078
+\.
+
+
+--
+-- Data for Name: alembic_version; Type: TABLE DATA; Schema: public; Owner: flask_project
+--
+
+COPY public.alembic_version (version_num) FROM stdin;
+84032afa9917
+\.
+
+
+--
+-- Data for Name: log; Type: TABLE DATA; Schema: public; Owner: flask_project
+--
+
+COPY public.log (id, account_log_date, account_log, debit, credit, user_crn, balance, account_id) FROM stdin;
+1	2020-12-14 09:07:59.029315	Created a saving account	\N	\N	37078	0	365573
+2	2020-12-14 09:08:02.705793	Created a current account	\N	\N	37078	0	346892
+3	2020-12-14 09:08:06.433526	Created a salary account	\N	\N	37078	0	567228
+4	2020-12-14 09:08:26.158227	Rs. 10000 credited	\N	10000	37078	10000	365573
+5	2020-12-14 09:08:46.681987	Rs. 25800 credited	\N	25800	37078	25800	567228
+6	2020-12-14 09:09:16.214257	Rs. 2030 credited	\N	2030	37078	2030	346892
+7	2020-12-14 09:11:09.438504	Rs. 800 debited	800	\N	37078	25000	567228
+8	2020-12-14 09:11:49.16295	Rs. 500 debited for346892	500	\N	37078	9500	365573
+9	2020-12-14 09:11:49.163839	Rs. 500 credited from365573	\N	500	37078	2530	346892
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: flask_project
+--
+
+COPY public.users (id, crn, first_name, last_name, email, address, image_file, pan_number, adhar_number, password, is_admin) FROM stdin;
+1	14192	ADMIN	ADMIN	admin@gmail.com	FLASK	default.jpg	ASDFG1234D	123412341234	$2b$12$qzsW44hJ2lKr5MHEbGTlxu6uE8m8zl5y9EgTI1Lf3NVV/b5ntDDbK	t
+2	37078	AVADHUT	MORE	avadhut@gmail.com	Ichalkarnji	default.jpg	ASDFG1234F	123412341235	$2b$12$2iBSpimPntyjO5X49RVgQemFqJHZQ/.fVI6/4plOu8VpHgBkxJVDm	f
+\.
+
+
+--
+-- Name: account_id_seq; Type: SEQUENCE SET; Schema: public; Owner: flask_project
+--
+
+SELECT pg_catalog.setval('public.account_id_seq', 3, true);
+
+
+--
+-- Name: log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: flask_project
+--
+
+SELECT pg_catalog.setval('public.log_id_seq', 9, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: flask_project
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 2, true);
+
+
+--
+-- Name: account account_account_no_key; Type: CONSTRAINT; Schema: public; Owner: flask_project
+--
+
+ALTER TABLE ONLY public.account
+    ADD CONSTRAINT account_account_no_key UNIQUE (account_no);
+
+
+--
+-- Name: account account_pkey; Type: CONSTRAINT; Schema: public; Owner: flask_project
+--
+
+ALTER TABLE ONLY public.account
+    ADD CONSTRAINT account_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: alembic_version alembic_version_pkc; Type: CONSTRAINT; Schema: public; Owner: flask_project
+--
+
+ALTER TABLE ONLY public.alembic_version
+    ADD CONSTRAINT alembic_version_pkc PRIMARY KEY (version_num);
+
+
+--
+-- Name: log log_pkey; Type: CONSTRAINT; Schema: public; Owner: flask_project
+--
+
+ALTER TABLE ONLY public.log
+    ADD CONSTRAINT log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_crn_key; Type: CONSTRAINT; Schema: public; Owner: flask_project
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_crn_key UNIQUE (crn);
+
+
+--
+-- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: flask_project
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_email_key UNIQUE (email);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: flask_project
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: account account_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: flask_project
+--
+
+ALTER TABLE ONLY public.account
+    ADD CONSTRAINT account_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(crn) ON DELETE CASCADE;
+
+
+--
+-- Name: log log_account_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: flask_project
+--
+
+ALTER TABLE ONLY public.log
+    ADD CONSTRAINT log_account_id_fkey FOREIGN KEY (account_id) REFERENCES public.account(account_no) ON DELETE CASCADE;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

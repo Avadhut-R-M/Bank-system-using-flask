@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    table, tr, td, th{
+       border-style: solid;
+    }
+    tr, td, th{
+        padding: 1em;
+        text-align: center;
+    }
+    div{
+        display: flex;
+        justify-content: center;
+    }
+</style>
+<div>
+<table>
+    <tr>
+        <th>date</th>
+        <th>log</th>
+        <th>debit</th>
+        <th>credit</th>
+        <th>balance</th>
+    </tr>
+    {% for log in logs %}
+    <tr>
+        <td>{{ log.account_log_date.strftime('%d-%m-%Y') }}</td>
+        <td>{{ log.account_log }}</td>
+        <td>{{ log.debit }}</td>
+        <td>{{ log.credit }}</td>
+        <td>{{ log.balance }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock content %}

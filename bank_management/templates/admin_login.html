@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    .columns{
+        display: flex;
+        justify-content: space-around;
+    }
+</style>
+<div class="columns">
+
+<div>
+    <h1>Manager Login</h1>
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ admin_form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Log In</legend>
+                <div class="form-group">
+                    {{ admin_form.email.label(class="form-control-label") }}
+                    {% if admin_form.email.errors %}
+                        {{ admin_form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in admin_form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ admin_form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ admin_form.password.label(class="form-control-label") }}
+                    {% if admin_form.password.errors %}
+                        {{ admin_form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in admin_form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ admin_form.password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-check">
+                    {{ admin_form.remember(class="form-check-input") }}
+                    {{ admin_form.remember.label(class="form-check-label") }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ admin_form.submit(class="btn btn-outline-info") }}
+                <small class="text-muted ml-2">
+                    <a href="{{ url_for('users.reset_request') }}">Forgot Password?</a>
+                </small>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock content %}

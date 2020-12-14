@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+
+    .column div{
+        display: flex;
+        max-width: 40%;
+        border-style: solid;
+        padding: 1em;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+<div class="column">
+<div>
+    <h2>For the Account Holder do acoount login here</h2>
+    <a href="{{ url_for('users.user_login') }}"  class="btn btn-success">Here</a>
+    
+</div>
+
+<div>
+    <h2>For Manager do acoount login here</h2>
+    <a href="{{ url_for('users.admin_login') }}" class="btn btn-success">Here</a></button>
+</div>
+</div>
+{% endblock content %}

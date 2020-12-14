@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    .column{
+        display: flex;
+        justify-content: space-around;
+    }
+    .content-section{
+        height: 100%;
+        width: 50%;
+    }
+</style>
+<div class="column">
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <div class="form-group">
+                {{ form.account_number.label(class="form-control-label") }}
+                {% if form.account_number.errors %}
+                    {{ form.account_number(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.account_number.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.account_number(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.from_date.label(class_="form-control-label") }}
+                {% if form.from_date.errors %}
+                    {{ form.from_date(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.from_date.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.from_date(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.to_date.label(class="form-control-label") }}
+                {% if form.to_date.errors %}
+                    {{ form.to_date(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.to_date.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.to_date(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+           
+        </fieldset>
+        <div class="form-group">
+            {{ form.log_submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+</div>
+{% endblock content %}

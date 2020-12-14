@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    .column{
+        display: flex;
+        justify-content: space-around;
+    }
+</style>
+<div class="column">
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <div class="form-group">
+                {{ form.account_type.label(class_="form-control-label") }}
+                {% if form.account_type.errors %}
+                    {{ form.account_type(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.account_type.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.account_type(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.receiver_accont_num.label(class="form-control-label") }}
+                {% if form.receiver_accont_num.errors %}
+                    {{ form.receiver_accont_num(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.receiver_accont_num.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.receiver_accont_num(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.receiver_first_name.label(class="form-control-label") }}
+                {% if form.receiver_first_name.errors %}
+                    {{ form.receiver_first_name(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.receiver_first_name.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.receiver_first_name(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form. receiver_last_name.label(class="form-control-label") }}
+                {% if form. receiver_last_name.errors %}
+                    {{ form. receiver_last_name(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form. receiver_last_name.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form. receiver_last_name(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form. money_transfer.label(class="form-control-label") }}
+                {% if form. money_transfer.errors %}
+                    {{ form. money_transfer(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form. money_transfer.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form. money_transfer(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+</div>
+{% endblock content %}

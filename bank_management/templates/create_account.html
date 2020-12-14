@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    .column{
+        display: flex;
+        justify-content: center;
+    }
+    .content-section{
+        width: 50%;
+    }
+</style>
+<div class="column">
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <div class="form-group">
+                {{ form.account_holder_name.label(class_="form-control-label") }}
+                {% if form.account_holder_name.errors %}
+                    {{ form.account_holder_name(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.account_holder_name.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.account_holder_name(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.account_holder_crn.label(class="form-control-label") }}
+                {% if form.account_holder_crn.errors %}
+                    {{ form.account_holder_crn(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.account_holder_crn.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.account_holder_crn(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.account_holder_address.label(class="form-control-label") }}
+                {% if form.account_holder_address.errors %}
+                    {{ form.account_holder_address(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.account_holder_address.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.account_holder_address(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form. account_type.label(class="form-control-label") }}
+                {% if form. account_type.errors %}
+                    {{ form. account_type(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form. account_type.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form. account_type(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+</div>
+{% endblock content %}

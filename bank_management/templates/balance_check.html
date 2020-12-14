@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    .column{
+        display: flex;
+        justify-content: space-around;
+    }
+    .column div{
+        border-style: solid;
+        border-color: forestgreen;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2em;
+    }
+    hr {width: 300px;margin-left: auto;margin-right: auto;height: 1px;background-color: forestgreen;}
+</style>
+<div class="column">
+    {% for ac in accounts %}
+        <div class="column">
+            <h2>{{ ac.account_type }}</h2>
+            <hr>
+            <h3>Account No. - {{ ac.account_no }}</h3>
+            <hr>
+            <h3>{{ ac.balance }}</h3>
+            
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}
