@@ -13,42 +13,35 @@ def load_user(user_id):
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(
-                    db.Integer,
-                    primary_key=True
-                )
+        db.Integer,
+        primary_key=True)
     crn = db.Column(
-                        db.Integer,
-                        unique=True,
-                        nullable=False
-                    )
+        db.Integer,
+        unique=True,
+        nullable=False)
     first_name = db.Column(
-                                db.String(20),
-                                nullable=False
-                            )
+        db.String(20),
+        nullable=False)
     last_name = db.Column(
-                            db.String(20),
-                            nullable=False
-                        )
+        db.String(20),
+        nullable=False)
     email = db.Column(
-                        db.String(120),
-                        unique=True,
-                        nullable=False
-                    )
+        db.String(120),
+        unique=True,
+        nullable=False)
     address = db.Column(db.Text(), nullable=False)
     image_file = db.Column(
-                            db.String(50),
-                            nullable=False,
-                            default='default.jpg'
-                        )
+        db.String(50),
+        nullable=False,
+        default='default.jpg')
     pan_number = db.Column(db.String(10))
     adhar_number = db.Column(db.String(12))
     password = db.Column(db.String(60), nullable=False)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
     account_holder = db.relationship(
-                                        'Account',
-                                        backref='account_holder',
-                                        passive_deletes=True, lazy=True
-                                    )
+        'Account',
+        backref='account_holder',
+        passive_deletes=True, lazy=True)
 
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
@@ -69,40 +62,33 @@ class User(db.Model, UserMixin):
 
 class Account(db.Model):
     id = db.Column(
-                    db.Integer,
-                    primary_key=True
-                )
+        db.Integer,
+        primary_key=True)
     account_no = db.Column(
-                            db.Integer,
-                            unique=True,
-                            nullable=False,
-                            default=0
-                        )
+        db.Integer,
+        unique=True,
+        nullable=False,
+        default=0)
     account_type = db.Column(
-                                db.String(30),
-                                nullable=False
-                            )
+        db.String(30),
+        nullable=False)
     balance = db.Column(
-                            db.Float,
-                            nullable=False,
-                            default=0
-                        )
+        db.Float,
+        nullable=False,
+        default=0)
     date_started = db.Column(
-                                db.DateTime,
-                                nullable=False,
-                                default=datetime.utcnow
-                            )
+        db.DateTime,
+        nullable=False,
+        default=datetime.utcnow)
     user_id = db.Column(
-                            db.Integer,
-                            db.ForeignKey('users.crn', ondelete='CASCADE'),
-                            nullable=False
-                        )
+        db.Integer,
+        db.ForeignKey('users.crn', ondelete='CASCADE'),
+        nullable=False)
     account = db.relationship(
-                                'Log',
-                                backref='account',
-                                passive_deletes=True,
-                                lazy=True
-                            )
+        'Log',
+        backref='account',
+        passive_deletes=True,
+        lazy=True)
 
     def __repr__(self):
         return f"Account('{self.account_no}', '{self.account_type}')"
@@ -110,27 +96,22 @@ class Account(db.Model):
 
 class Log(db.Model):
     id = db.Column(
-                    db.Integer,
-                    primary_key=True
-                )
+        db.Integer,
+        primary_key=True)
     account_log_date = db.Column(
-                                    db.DateTime,
-                                    nullable=False,
-                                    default=datetime.utcnow
-                                )
+        db.DateTime,
+        nullable=False,
+        default=datetime.utcnow)
     account_log = db.Column(
-                                db.String(30),
-                                nullable=False
-                            )
+        db.String(30),
+        nullable=False)
     debit = db.Column(db.Integer)
     credit = db.Column(db.Integer)
     user_crn = db.Column(db.Integer, nullable=False)
     balance = db.Column(db.Integer, nullable=False)
     account_id = db.Column(
-                            db.Integer,
-                            db.ForeignKey(
-                                            'account.account_no',
-                                            ondelete='CASCADE'
-                                        ),
-                            nullable=False
-                        )
+        db.Integer,
+        db.ForeignKey(
+            'account.account_no',
+            ondelete='CASCADE'),
+        nullable=False)

@@ -10,10 +10,9 @@ def save_picture(form_picture, crn):
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = str(crn) + f_ext
     picture_path = os.path.join(
-                                    current_app.root_path,
-                                    'static/profile_pics',
-                                    picture_fn
-                                )
+        current_app.root_path,
+        'static/profile_pics',
+        picture_fn)
 
     output_size = (125, 125)
     i = Image.open(form_picture)
