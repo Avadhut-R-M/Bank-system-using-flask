@@ -52,6 +52,20 @@ img{
     border-style: solid;
     border-color: black;
 }
+.logins{
+  background-color: honeydew;
+}
+.name{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+.badge{
+  text-align: center;
+  align-content: center;
+  align-items: center;
+}
 @media(max-width:600px){
   .bank-info{
     flex-direction: column;
@@ -61,7 +75,12 @@ img{
 
 
 </style>
-<h1><span class="badge badge-secondary">Welcome to bank MB</span></h1>
+<div class="top">
+
+
+<div class="name">
+  <h1><span class="badge badge-secondary">WELCOME TO MB BANK</span></h1>
+</div>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -89,15 +108,16 @@ img{
     </a>
   </div>
   <div class="bank-info">
-      <div>
-        <h2>Get High paying interest rate for you</h2>
+      <div class="logins">
+        <h2>7 % P.A. ON ALL SAVING ACCOUNTS</h2>
       </div>
-      <div>
-        <h2>Get loan at very low EMI only in our bank.</h2>
+      <div class="logins">
+        <h2>GET HOME LOAN FROM THE BANK YOU TRUST AT INTEREST RATE OF 10% ONLY</h2>
       </div>
-      <div>
-        <h2>Open a 0 balance account in minutes.</h2>
+      <div class="logins">
+        <h2>OPEN A ZERO BALANCE ACCOUNT IN MINUTES.</h2>
       </div>
 
+</div>
 </div>
 {% endblock content %}

@@ -155,7 +155,7 @@ def money_transfer():
             db.session.commit()
             log1 = Log(
                 account_log='Rs. ' + str(money) + ' debited for ' +
-                            str(other_user_account.account_no),
+                            str(user.first_name),
                 debit=money,
                 user_crn=main_user_account.user_id,
                 balance=main_user_account.balance,
@@ -163,7 +163,7 @@ def money_transfer():
             db.session.add(log1)
             log2 = Log(
                 account_log='Rs. ' + str(money) + ' credited from ' +
-                            str(main_user_account.account_no),
+                            str(current_user.first_name),
                 credit=money,
                 user_crn=other_user_account.user_id,
                 balance=other_user_account.balance,

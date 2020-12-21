@@ -11,15 +11,18 @@
         justify-content: center;
         align-items: center;
     }
+    .logins{
+        background-color: honeydew;
+    }
 </style>
 <div class="column">
-<div>
+<div class="logins">
     <h2>For the Account Holder do acoount login here</h2>
     <a href="{{ url_for('users.user_login') }}"  class="btn btn-success">Here</a>
     
 </div>
 
-<div>
+<div class="logins">
     <h2>For Manager do acoount login here</h2>
     <a href="{{ url_for('users.admin_login') }}" class="btn btn-success">Here</a></button>
 </div>

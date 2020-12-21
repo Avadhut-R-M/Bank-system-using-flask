@@ -62,6 +62,7 @@ def register():
             'Your account has been created! You are now able to log in'
             'Your crn is ' + str(user_crn),
             'success')
+        login_user(user)
         return redirect(url_for('main.home'))
 
     return render_template('register.html', title='Register', form=form)
