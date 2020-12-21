@@ -1,10 +1,12 @@
 body {
   background: #fafafa;
-  color: #333333;
-  background: linear-gradient(45deg, rgb(248, 217, 205),rgb(209, 226, 248));
+  /* color: #333333; */
+  background: linear-gradient(45deg, rgb(248, 217, 205),rgb(168, 199, 240),rgb(223, 179, 113),rgb(241, 241, 150),rgb(136, 243, 136));
   margin-top: 5rem;
 }
-
+.border-bottom{
+  background-color: #ffffff;
+}
 h1, h2, h3, h4, h5, h6 {
   color: #444444;
 }
@@ -28,8 +30,9 @@ h1, h2, h3, h4, h5, h6 {
 .content-section {
   background: #ffffff;
   padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
+  border-style: solid;
+  border-color: #5f788a;
+  border-width: 3px;
   margin-bottom: 20px;
 }
 

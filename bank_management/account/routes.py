@@ -74,7 +74,7 @@ def create_account():
             db.session.add(log)
             db.session.commit()
 
-            flash('Your account has been created!', 'success')
+            flash('Your Account has been created!', 'success')
             return redirect(url_for('main.home'))
 
     return render_template(

@@ -20,36 +20,36 @@ from bank_management.models import User
 
 class RegistrationForm(FlaskForm):
     first_name = StringField(
-        'first name',
+        'First Name',
         validators=[
             DataRequired(),
             Length(min=2, max=20)],
         render_kw={'placeholder': 'First Name'})
     last_name = StringField(
-        'last name',
+        'Last Name',
         validators=[
             DataRequired(),
             Length(min=2, max=20)],
         render_kw={'placeholder': 'Last Name'})
     address = StringField(
-        'address',
+        'Address',
         validators=[
             DataRequired(),
             Length(min=2)],
         render_kw={'placeholder': 'Full address here'})
     pan_number = StringField(
-        'pan number',
+        'Pan Number',
         validators=[
             DataRequired(),
             Length(min=10, max=10)],
         render_kw={
             'placeholder':
-            'Put a valid pan Number'})
+            'Put a valid Pan Number'})
     picture = FileField(
         'Update Profile Picture',
         validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     adhar_number = IntegerField(
-        'adhar number',
+        'Adhar Number',
         validators=[
             DataRequired(),
             NumberRange(min=100000000000)],
@@ -72,7 +72,7 @@ class RegistrationForm(FlaskForm):
             'Conataining At least'
             ' 1 Upper case letter, '
             '1 lower case letter, '
-            ' 1 special character, '
+            ' 1 special character, and '
             '1 number'})
     confirm_password = PasswordField(
         'Confirm Password',
@@ -100,21 +100,21 @@ class RegistrationForm(FlaskForm):
                 and pan_number.data[:5].isalpha() and
                 pan_number.data[5:9].isdigit() and
                 pan_number.data[-1].isalpha())):
-            raise ValidationError('please add correct pan card deatils.')
+            raise ValidationError('please add correct Pan Card deatils.')
 
     def validate_adhar_number(self, adhar_number):
         user = User.query.filter_by(adhar_number=adhar_number.data).first()
 
         if user:
-            raise ValidationError('please add correct adhar card deatils.')
+            raise ValidationError('please add correct Adhar Card deatils.')
 
     def validate_first_name(self, first_name):
         if not(first_name.data.isalpha()):
-            raise ValidationError('Put valid name')
+            raise ValidationError('Put valid First Name')
 
     def validate_last_name(self, last_name):
         if not(last_name.data.isalpha()):
-            raise ValidationError('Put valid name')
+            raise ValidationError('Put valid Last Name')
 
     def validate_password(self, password):
         if (
@@ -154,22 +154,22 @@ class AdminLoginForm(FlaskForm):
 
 class UpdateAccountForm(FlaskForm):
     first_name = StringField(
-        'first name',
+        'First Name',
         validators=[
             DataRequired(),
             Length(min=2, max=20)])
     last_name = StringField(
-        'last name',
+        'Last Name',
         validators=[
             DataRequired(),
             Length(min=2, max=20)])
     address = StringField(
-        'address',
+        'Address',
         validators=[
             DataRequired(),
             Length(min=2)])
     pan_number = StringField(
-        'pan number',
+        'Pan Number',
         validators=[
             DataRequired(),
             Length(min=10, max=10)])
@@ -177,7 +177,7 @@ class UpdateAccountForm(FlaskForm):
         'Update Profile Picture(only .jpg, .png or .jpeg)',
         validators=[FileAllowed(['jpg', 'png', 'jpeg'])],)
     adhar_number = StringField(
-        'adhar number',
+        'Adhar Number',
         validators=[
             DataRequired(),
             Length(min=12, max=12)])
@@ -192,11 +192,11 @@ class UpdateAccountForm(FlaskForm):
 
     def validate_first_name(self, first_name):
         if not(first_name.data.isalpha()):
-            raise ValidationError('Put valid name')
+            raise ValidationError('Put valid First Name')
 
     def validate_last_name(self, last_name):
         if not(last_name.data.isalpha()):
-            raise ValidationError('Put valid name')
+            raise ValidationError('Put valid Last Name')
 
     def validate_pan_number(self, pan_number):
         if(not(
@@ -204,13 +204,13 @@ class UpdateAccountForm(FlaskForm):
                 and pan_number.data[:5].isalpha() and
                 pan_number.data[5:9].isdigit() and
                 pan_number.data[-1].isalpha())):
-            raise ValidationError('please add correct pan card deatils.')
+            raise ValidationError('please add correct Pan Card deatils.')
 
     def validate_adhar_number(self, adhar_number):
         if not(
             adhar_number.data.isdigit() and
                 int(adhar_number.data) > 100000000000):
-            raise ValidationError('please add correct adhar card deatils.')
+            raise ValidationError('please add correct Adhar Card deatils.')
 
 
 class RequestResetForm(FlaskForm):
@@ -253,11 +253,11 @@ class SearchUser(FlaskForm):
 
 class DeleteUser(FlaskForm):
     account_holder_name = StringField(
-        'account holder name',
+        'Account Holder Name',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_holder_crn = StringField(
-        'account holder CRN',
+        'Account Holder CRN',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     confirm = BooleanField(

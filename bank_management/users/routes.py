@@ -59,7 +59,7 @@ def register():
         db.session.commit()
 #        send_new_user_email(user)
         flash(
-            'Your account has been created! You are now able to log in'
+            'Your account has been created! You are now able to log in '
             'Your crn is ' + str(user_crn),
             'success')
         return redirect(url_for('main.home'))
@@ -146,7 +146,7 @@ def reset_request():
         # user = User.query.filter_by(email=form.email.data).first()
         # send_reset_email(user)
         flash(
-            'An email has been sent with instructions'
+            'An email has been sent with instructions '
             'to reset your password.',
             'info')
         return redirect(url_for('users.login'))
@@ -171,7 +171,7 @@ def reset_token(token):
         user.password = hashed_password
         db.session.commit()
         flash(
-            'Your password has been updated! You are now'
+            'Your password has been updated! You are now '
             'able to log in',
             'success')
         return redirect(url_for('users.login'))

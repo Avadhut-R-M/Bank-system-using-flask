@@ -15,26 +15,26 @@ from wtforms.fields.html5 import DateField
 
 class AccountForm(FlaskForm):
     account_holder_name = StringField(
-        'account holder name',
+        'Account Holder Name',
         render_kw={'readonly': True})
     account_holder_crn = StringField(
-        'account holder CRN',
+        'Account Holder CRN',
         render_kw={'readonly': True})
     account_holder_address = TextAreaField(
-        'account holder address',
+        'Account Holder Address',
         render_kw={'readonly': True})
     account_type = SelectField(
-        'Choose type of account',
+        'Choose type of Account',
         choices=[
             ('saving', 'Saving Account'),
             ('current', 'Current Account'),
-            ('salary', 'salary Account')])
+            ('salary', 'Salary Account')])
     submit = SubmitField('New Account')
 
 
 class MoneyTranferForm(FlaskForm):
     account_type = SelectField(
-        'Choose type of account',
+        'Choose Type of Account',
         coerce=str)
     receiver_accont_num = IntegerField(
         'Receiver Account Number',
@@ -63,7 +63,7 @@ class MoneyTranferForm(FlaskForm):
 
 class SearchUserAccount(FlaskForm):
     account_number = IntegerField(
-        'Put account number here',
+        'Put Account Number here',
         validators=[
             DataRequired(),
             NumberRange(
@@ -74,15 +74,15 @@ class SearchUserAccount(FlaskForm):
 
 class AddRemoveMoney(FlaskForm):
     account_holder_name = StringField(
-        'account holder name',
+        'Account Holder Name',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_holder_crn = StringField(
-        'account holder CRN',
+        'Account Holder CRN',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_type = StringField(
-        'account type',
+        'Account Type',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_number = StringField(
@@ -90,11 +90,11 @@ class AddRemoveMoney(FlaskForm):
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_balance = StringField(
-        'account balance',
+        'Account Balance',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     money = IntegerField(
-        'Put amount here',
+        'Put Amount here',
         validators=[
             DataRequired(),
             NumberRange(min=1)])
@@ -103,23 +103,23 @@ class AddRemoveMoney(FlaskForm):
 
 class DeleteAccount(FlaskForm):
     account_holder_name = StringField(
-        'account holder name',
+        'Account Holder Name',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_holder_crn = StringField(
-        'account holder CRN',
+        'Account Holder CRN',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_type = StringField(
-        'account type',
+        'Account Type',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_number = StringField(
-        'account number',
+        'Account Number',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_balance = StringField(
-        'account balance',
+        'Account Balance',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     confirm = BooleanField('Confirm', validators=[DataRequired()])
@@ -128,7 +128,7 @@ class DeleteAccount(FlaskForm):
 
 class AdminLogForm(FlaskForm):
     account_number = IntegerField(
-        'Put account number here',
+        'Put Account Number Here',
         validators=[
             DataRequired(),
             NumberRange(
@@ -141,7 +141,7 @@ class AdminLogForm(FlaskForm):
 
 class UserLogForm(FlaskForm):
     account_number = SelectField(
-        'Choose type of account',
+        'Choose type of Account',
         coerce=str)
     from_date = DateField('From', format='%Y-%m-%d')
     to_date = DateField('To', format='%Y-%m-%d')
