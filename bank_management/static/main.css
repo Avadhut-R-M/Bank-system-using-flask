@@ -1,12 +1,8 @@
 body {
-  /* background: #fafafa;
+  background: #fafafa;
   color: #333333;
-  background: linear-gradient(45deg, rgb(248, 217, 205),rgb(209, 226, 248)); */
+  background: linear-gradient(45deg, rgb(248, 217, 205),rgb(209, 226, 248));
   margin-top: 5rem;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.IYYs0m-m0_UWbn7etp9tEwHaKa%26pid%3DApi&f=1);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -40,11 +36,7 @@ h1, h2, h3, h4, h5, h6 {
 .article-title {
   color: #444444;
 }
-.content-section,.bank_img img{
-  border-style: solid;
-  border-color: #5f788a;
-  border-width: 3px;
-}
+
 a.article-title:hover {
   color: #428bca;
   text-decoration: none;
@@ -129,7 +121,6 @@ footer>p{
 .column{
   display: flex;
   justify-content: space-around;
-  column-gap: 5em;
 }
 @media(max-width:600px){
   .footer{

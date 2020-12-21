@@ -15,26 +15,26 @@ from wtforms.fields.html5 import DateField
 
 class AccountForm(FlaskForm):
     account_holder_name = StringField(
-        'Account Holder Name',
+        'account holder name',
         render_kw={'readonly': True})
     account_holder_crn = StringField(
-        'Account Holder CRN',
+        'account holder CRN',
         render_kw={'readonly': True})
     account_holder_address = TextAreaField(
-        'Account Holder Address',
+        'account holder address',
         render_kw={'readonly': True})
     account_type = SelectField(
-        'Choose type of Account',
+        'Choose type of account',
         choices=[
             ('saving', 'Saving Account'),
             ('current', 'Current Account'),
-            ('salary', 'Salary Account')])
-    submit = SubmitField('Create Account')
+            ('salary', 'salary Account')])
+    submit = SubmitField('New Account')
 
 
 class MoneyTranferForm(FlaskForm):
     account_type = SelectField(
-        'Choose type of Account',
+        'Choose type of account',
         coerce=str)
     receiver_accont_num = IntegerField(
         'Receiver Account Number',
@@ -54,16 +54,16 @@ class MoneyTranferForm(FlaskForm):
             DataRequired(),
             Length(min=2, max=20)])
     money_transfer = IntegerField(
-        'Amount to be Transfered',
+        'Amount to be transfered',
         validators=[
             DataRequired(),
             NumberRange(min=1)])
-    submit = SubmitField('Confirm')
+    submit = SubmitField('Confirm Transform')
 
 
 class SearchUserAccount(FlaskForm):
     account_number = IntegerField(
-        'Put Account Number here',
+        'Put account number here',
         validators=[
             DataRequired(),
             NumberRange(
@@ -74,27 +74,27 @@ class SearchUserAccount(FlaskForm):
 
 class AddRemoveMoney(FlaskForm):
     account_holder_name = StringField(
-        'Account Holder Name',
+        'account holder name',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_holder_crn = StringField(
-        'Account Holder CRN',
+        'account holder CRN',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_type = StringField(
-        'Account Type',
+        'account type',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_number = StringField(
-        'Account Number',
+        'account number',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_balance = StringField(
-        'Account Balance',
+        'account balance',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     money = IntegerField(
-        'Put Amount here',
+        'Put amount here',
         validators=[
             DataRequired(),
             NumberRange(min=1)])
@@ -103,23 +103,23 @@ class AddRemoveMoney(FlaskForm):
 
 class DeleteAccount(FlaskForm):
     account_holder_name = StringField(
-        'Account Holder name',
+        'account holder name',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_holder_crn = StringField(
-        'Account Holder CRN',
+        'account holder CRN',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_type = StringField(
-        'Account Type',
+        'account type',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_number = StringField(
-        'Account Number',
+        'account number',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     account_balance = StringField(
-        'Account Balance',
+        'account balance',
         validators=[DataRequired()],
         render_kw={'readonly': True})
     confirm = BooleanField('Confirm', validators=[DataRequired()])
@@ -128,7 +128,7 @@ class DeleteAccount(FlaskForm):
 
 class AdminLogForm(FlaskForm):
     account_number = IntegerField(
-        'Put Account Number here',
+        'Put account number here',
         validators=[
             DataRequired(),
             NumberRange(
@@ -141,7 +141,7 @@ class AdminLogForm(FlaskForm):
 
 class UserLogForm(FlaskForm):
     account_number = SelectField(
-        'Choose Type of Account',
+        'Choose type of account',
         coerce=str)
     from_date = DateField('From', format='%Y-%m-%d')
     to_date = DateField('To', format='%Y-%m-%d')
